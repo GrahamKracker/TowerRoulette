@@ -15,8 +15,7 @@ namespace TowerRoulette;
 [HarmonyPatch]
 public class Main : BloonsTD6Mod
 {
-    
-    private static Random _random = new();
+    private static readonly Random Random = new();
     public override void OnNewGameModel(GameModel result)
     {
         result.towers.ForEach(RandomizeStats);
@@ -24,7 +23,7 @@ public class Main : BloonsTD6Mod
 
     private static void RandomizeStats(TowerModel originalModel)
     {
-        if (_random.Next(0, 100) > 50)
+        if (Random.Next(0, 100) > 50)
         {
             BuffTower(originalModel);
         }
